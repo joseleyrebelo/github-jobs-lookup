@@ -1,0 +1,309 @@
+$accent: #ffc36a;
+$blue: #3779db;
+$lightgray: #cacaca;
+$lightgray2: #969696;
+$lightgray3: #505050;
+
+@mixin poker_link() {
+  & {
+    &:active,
+    &:hover,
+    &:visited,
+    &:focus,
+    &:-webkit-any-link {
+      @content;
+    }
+  }
+}
+
+body {
+  line-height: 1.35;
+}
+
+.app {
+  &__center {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  &__navbar {
+    margin: 25px 0 10px;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    &.error {
+      .app__navbar-search {
+        border-color: red;
+      }
+    }
+    &-logo {
+      font-weight: 900;
+      font-size: 175%;
+      margin-right: 20px;
+      @include poker_link {
+        text-decoration: none;
+        text-decoration-line: none;
+        text-decoration-style: none;
+        color: black;
+      }
+    }
+    &-go-back {
+      display: none;
+      font-weight: 700;
+      border: 2px solid black;
+      padding: 6px 16px;
+      font-size: 15px;
+      border-radius: 30px;
+      color: black;
+      @include poker_link {
+        color: black;
+        text-decoration: none;
+      }
+    }
+    &-search {
+      flex-grow: 1;
+      padding: 10px 20px;
+      border: 0px;
+      font-size: 15px;
+      border-radius: 30px;
+      border: 2px solid black;
+      box-sizing: content-box;
+      &:focus {
+        outline: none;
+      }
+    }
+    &-submit {
+      margin-left: 15px;
+      background-color: black;
+      border: 2px solid black;
+      color: white;
+      padding: 10px 20px;
+      border: 0px;
+      font-size: 15px;
+      border-radius: 30px;
+      box-sizing: content-box;
+      font-weight: 700;
+      cursor: pointer;
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        background: $accent;
+        color: black;
+      }
+    }
+    &.go-back-mode {
+      justify-content: space-between;
+      .app__navbar {
+        &-search {
+          display: none;
+        }
+        &-submit {
+          display: none;
+        }
+        &-go-back {
+          display: block;
+        }
+      }
+    }
+  }
+  &__pagination {
+    margin: 30px 0 50px 0;
+    .item {
+      margin: 10px;
+      font-weight: 700;
+      color: gray;
+      cursor: pointer;
+      &.active {
+        color: black;
+        pointer-events: none;
+      }
+      &:hover {
+        color: black;
+      }
+    }
+  }
+  &__loading {
+    position: fixed;
+    z-index: 9;
+    background-color: rgba(white, 0.75);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transform: opacity 0.5s ease;
+    img {
+      width: 30px;
+      height: 30px;
+    }
+    &.show {
+      display: flex;
+    }
+    &.reveal {
+      opacity: 1;
+    }
+  }
+}
+
+.entry {
+  &__company {
+    &-name {
+      font-size: 15px;
+      color: $lightgray3;
+    }
+    &-img {
+      &-holder {
+        display: flex;
+        max-width: 150px;
+        flex-grow: 0;
+        margin-right: 15px;
+        flex-wrap: wrap;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        overflow: hidden;
+        img {
+          flex-shrink: 0;
+          flex-grow: 0;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+  &__link {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+  }
+  &__index {
+    font-size: 22px;
+    font-weight: 700;
+    font-style: italic;
+    margin-right: 20px;
+    letter-spacing: -0.03em;
+    color: $lightgray;
+  }
+  &__title {
+    font-weight: 700;
+    font-size: 18px;
+  }
+  &__type {
+    font-size: 15px;
+    color: $lightgray2;
+    border: 1px solid $lightgray2;
+    border-radius: 5px;
+    color: $lightgray2;
+    padding: 3px 6px;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  &__body {
+    text-align: left;
+    padding: 25px;
+    border-bottom: 1px solid black;
+  }
+  &__apply {
+    background: $blue;
+    border-radius: 10px;
+    color: white;
+  }
+  &--card {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: nowrap;
+    padding: 25px 25px;
+    border-bottom: 1px solid gray;
+    &__left {
+      flex-grow: 1;
+      text-align: left;
+    }
+    &__right {
+      flex-shrink: 0;
+      flex-grow: 0;
+      margin-left: 20px;
+      max-width: 25%;
+      text-align: right;
+    }
+    .entry__ {
+      &title {
+        margin-bottom: 6px;
+      }
+    }
+    &:hover {
+      cursor: pointer;
+      background: $accent;
+      .entry__ {
+        &index {
+          color: black;
+        }
+        &type {
+          color: $lightgray3;
+          // background: rgba(white, 0.2);
+        }
+      }
+    }
+  }
+  &--post {
+    &__top {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      flex-flow: nowrap;
+      padding: 25px 25px;
+      border-bottom: 1px solid gray;
+      &-left {
+        flex-grow: 1;
+        text-align: left;
+      }
+      &-right {
+        flex-shrink: 0;
+        flex-grow: 0;
+        margin-left: 20px;
+        max-width: 25%;
+        text-align: right;
+      }
+    }
+    &__date {
+      margin-top: 5px;
+      font-size: 14px;
+      color: $lightgray3;
+      a {
+        @include poker_link {
+          color: $lightgray3;
+        }
+        a:hover {
+          color: black;
+        }
+      }
+    }
+    .entry__ {
+      &title {
+        font-size: 32px;
+      }
+      &company-name {
+        font-size: 20px;
+        a {
+          @include poker_link {
+            color: $lightgray2;
+          }
+        }
+        a:hover {
+          color: black;
+        }
+      }
+      &type {
+        background: black;
+        color: white;
+        vertical-align: middle;
+      }
+    }
+  }
+}
